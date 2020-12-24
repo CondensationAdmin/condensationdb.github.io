@@ -1,0 +1,19 @@
+{
+  "name": "CondensationDB",
+  "version": "0.0.1",
+  "description": "Condensation is an open-source zero trust, distributed, conflict-free database enabling to build modern applications while ensuring data ownership and security",
+  "main": "index.js",
+  "authors": {
+    "name": "Matteo",
+    "email": "matteo@condensationdb.com"
+  },
+  "repository": "https://github.com/condensationdb/CondensationDB",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
