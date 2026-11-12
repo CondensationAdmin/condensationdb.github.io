@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Plan du campus</title>
+<meta name="description" content="Hôpital de La Tour, Meyrin : trouver un bâtiment, un parking ou un service et s'y rendre à pied.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="brand-title">Hôpital de La Tour</span>
+    <span class="brand-sub">Plan du campus · Meyrin</span>
+  </div>
+  <div class="search">
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" inputmode="search" autocomplete="off" enterkeyhint="search"
+           placeholder="Service, médecin, bâtiment…" aria-label="Rechercher un service, un médecin ou un bâtiment">
+    <button id="q-clear" class="icon-btn" type="button" aria-label="Effacer" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <ul id="results" class="results" role="listbox" hidden></ul>
+</header>
+
+<main id="map" aria-label="Carte du campus"></main>
+
+<div class="map-tools">
+  <button id="btn-locate" class="fab" type="button" aria-label="Me localiser">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/></svg>
+  </button>
+  <button id="btn-layer" class="fab fab-text" type="button" aria-label="Changer de fond de carte">Plan</button>
+</div>
+
+<section id="sheet" class="sheet" aria-live="polite">
+  <div class="grabber" aria-hidden="true"></div>
+
+  <!-- Vue 1 : accès rapides -->
+  <div id="view-home">
+    <p id="gps-status" class="status">Recherche de votre position…</p>
+    <h2 class="sheet-title">Où allez-vous ?</h2>
+    <div class="chips" id="chips"></div>
+    <p class="hint">Navette : arrêt <b>P4</b> ⇄ arrêt <b>P1</b> (devant le B1). Trajet en orange sur la carte.</p>
+  </div>
+
+  <!-- Vue 2 : itinéraire -->
+  <div id="view-route" hidden>
+    <div class="route-head">
+      <div>
+        <p class="route-kicker" id="route-kicker">Itinéraire à pied</p>
+        <h2 class="route-title" id="route-title">—</h2>
+      </div>
+      <button id="btn-close" class="icon-btn big" type="button" aria-label="Fermer l'itinéraire">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="route-row">
+      <button id="route-photo" class="photo" type="button" hidden></button>
+      <div class="route-stats" id="route-stats"></div>
+    </div>
+    <div id="route-alt" class="alt" hidden></div>
+    <div id="route-from" class="from" hidden></div>
+    <ul class="notes" id="route-notes"></ul>
+    <details id="route-services" class="services" hidden></details>
+    <div class="route-actions">
+      <label class="toggle"><input type="checkbox" id="no-steps"> <span>Éviter les escaliers</span></label>
+      <a id="btn-drive" class="btn-secondary" target="_blank" rel="noopener" hidden>Y aller en voiture</a>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox" class="lightbox" role="dialog" aria-label="Photo du bâtiment" hidden>
+  <img alt="">
+  <p class="lb-cap"></p>
+  <p class="lb-close">Toucher pour fermer</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="campus-geo.js"></script>
+<script src="annuaire.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
